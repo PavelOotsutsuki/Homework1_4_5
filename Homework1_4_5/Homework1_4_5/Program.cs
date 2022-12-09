@@ -35,26 +35,22 @@ namespace Homework1_4_5
         {
             int[] outputArray = new int[inputArray.Length];
             int arrayElementPosition;
+            int copyElement;
 
             Random random = new Random();
-
+            
             for (int arrayIndex=0; arrayIndex<outputArray.Length; arrayIndex++)
             {
-                outputArray[arrayIndex] = 0;
+                outputArray[arrayIndex] = inputArray[arrayIndex];
             }
 
-            for (int arrayIndex=0; arrayIndex<inputArray.Length; arrayIndex++)
+            for (int arrayIndex=0; arrayIndex<outputArray.Length;arrayIndex++)
             {
-                arrayElementPosition = random.Next(0, inputArray.Length);
+                arrayElementPosition= random.Next(0, outputArray.Length);
 
-                if (outputArray[arrayElementPosition]==0)
-                {
-                    outputArray[arrayElementPosition] = inputArray[arrayIndex];
-                }
-                else
-                {
-                    arrayIndex--;
-                }
+                copyElement = outputArray[arrayIndex];
+                outputArray[arrayIndex] = outputArray[arrayElementPosition];
+                outputArray[arrayElementPosition] = copyElement;
             }
 
             return outputArray;
