@@ -27,30 +27,62 @@ namespace Homework1_4_5
             PrintArray(outputArray2);
             Console.WriteLine();
 
+            outputArray1 = Shuffle2(inputArray);
+            outputArray2 = Shuffle2(inputArray);
+
+            Console.Write("Исходный массив: ");
+            PrintArray(inputArray);
+            Console.WriteLine();
+            Console.Write("Первый массив: ");
+            PrintArray(outputArray1);
+            Console.WriteLine();
+            Console.Write("Второй массив: ");
+            PrintArray(outputArray2);
+            Console.WriteLine();
+
             Console.Write("Для продолжения нажмите любую кнопку...");
             Console.ReadKey();
+        }
+
+        static int[] Shuffle2(int[] inputArray)
+        {
+            int arrayIndex;
+            int copyElement;
+
+            Random random = new Random();
+
+            for (int i = 0; i < inputArray.Length; i++)
+            {
+                arrayIndex = random.Next(0, inputArray.Length);
+
+                copyElement = inputArray[i];
+                inputArray[i] = inputArray[arrayIndex];
+                inputArray[arrayIndex] = copyElement;
+            }
+
+            return inputArray;
         }
 
         static int[] Shuffle(int [] inputArray)
         {
             int[] outputArray = new int[inputArray.Length];
-            int arrayElementPosition;
+            int arrayIndex;
             int copyElement;
 
             Random random = new Random();
             
-            for (int arrayIndex=0; arrayIndex<outputArray.Length; arrayIndex++)
+            for (int i=0; i<outputArray.Length; i++)
             {
-                outputArray[arrayIndex] = inputArray[arrayIndex];
+                outputArray[i] = inputArray[i];
             }
 
-            for (int arrayIndex=0; arrayIndex<outputArray.Length;arrayIndex++)
+            for (int i=0; i<outputArray.Length;i++)
             {
-                arrayElementPosition= random.Next(0, outputArray.Length);
+                arrayIndex= random.Next(0, outputArray.Length);
 
-                copyElement = outputArray[arrayIndex];
-                outputArray[arrayIndex] = outputArray[arrayElementPosition];
-                outputArray[arrayElementPosition] = copyElement;
+                copyElement = outputArray[i];
+                outputArray[i] = outputArray[arrayIndex];
+                outputArray[arrayIndex] = copyElement;
             }
 
             return outputArray;
@@ -58,15 +90,12 @@ namespace Homework1_4_5
 
         static void PrintArray(int[] array)
         {
-            for (int arrayIndex=0; arrayIndex<array.Length; arrayIndex++)
+            for (int i=0; i<array.Length-1; i++)
             {
-                Console.Write(array[arrayIndex]);
-
-                if(arrayIndex!=array.Length-1)
-                {
-                    Console.Write(", ");
-                }
+                Console.Write(array[i] + ", ");
             }
+
+            Console.Write(array[array.Length-1]);
         }
     }
 }
